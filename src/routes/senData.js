@@ -6,7 +6,7 @@ export async function post(req, res, next) {
     let data = req.body
     console.log(data)
     
-    fetch('http://localhost:5000/item', {
+    fetch('https://teamh-app1.herokuapp.com/item', {
         method: 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -15,7 +15,7 @@ export async function post(req, res, next) {
         body: JSON.stringify({ p: data.p, d: data.d, a: data.a, })
         })
     .then(() => {
-        console.log('Info sended to the localhost:5000/item')
+        console.log('Info sended to the https://teamh-app1.herokuapp.com/item')
         return res.end(JSON.stringify({ success: true }))
     })
     .catch(err => {
