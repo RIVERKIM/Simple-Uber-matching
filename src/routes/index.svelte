@@ -6,24 +6,19 @@
 
 	const { session } = stores()
 
-	// De la posicion actual de la persona
 	let latitude, longitude
 	
-	// Verificar si se quiere dar la direccion en lat y lng
 	let homeInCord = false
 	let destinationInCord = false
 
-	// Verificar estado actual de la app
 	let awaitStartRoute = false
 	let awaitDriver = false
 	let routeStarted = false
 	
-	// Direccion de la ruta
 	let homeAddress = ''
 	let destinationAddress = ''
 	let direction
 
-	// Variables globales necesarias para usar google maps
 	let directionService, directionDisplay, homeMarker, map
 
 	let estimatedTime, estimatedCost
@@ -34,26 +29,22 @@
 				goto('/driver')
 		}, 4000)
 
-		// Obtener la localizacion actual
 		navigator.geolocation.getCurrentPosition(async (p) => {
 			latitude = p.coords.latitude;
 			longitude = p.coords.longitude;
 			
-			// Crea el mapa
 			map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 18,
 				center: {lat: latitude, lng: longitude},
 				zoomControl: true
 			})
 			
-			// Agrega un marcador a la posicion actual de la persona
 			homeMarker = new google.maps.Marker({
 				position: {lat: latitude, lng: longitude},
 				map,
 				title: 'Home',
 			})
 
-			// Creacion del servico de direcciones de goole maps
 			directionService = new google.maps.DirectionsService()
 			directionDisplay = new google.maps.DirectionsRenderer();
 			directionDisplay.setMap(map)
